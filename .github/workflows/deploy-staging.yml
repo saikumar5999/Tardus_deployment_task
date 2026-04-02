@@ -1,0 +1,31 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Build staging artifact
+        run: mvn -B clean package
+
+      - name: Deploy to staging
+        run: |
+          echo "Replace this with the real staging deployment command."
+          echo "Example: copy jar to QA server and restart the service."
