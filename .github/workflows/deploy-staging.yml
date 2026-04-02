@@ -25,7 +25,8 @@ jobs:
       - name: Build staging artifact
         run: mvn -B clean package
 
-      - name: Deploy to staging
-        run: |
-          echo "Replace this with the real staging deployment command."
-          echo "Example: copy jar to QA server and restart the service."
+      - name: Upload staging artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-jar
+          path: target/*.jar
